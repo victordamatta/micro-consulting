@@ -1,0 +1,13 @@
+<h1>Foo</h1>
+
+<% if flash[:alert] %>
+    <div class="alert"><%= flash[:alert] %></div>
+<% end %>
+
+<%= form_tag(:action => 'login') do %>
+    <p>Email:</br> <%= text_field_tag :email %></p>
+    <p>Senha:</br> <%= password_field_tag :password %></p>
+    <%= submit_tag("Log In") %>
+<% end %>
+
+<p>Novo usuário? <%= link_to "Inscreva-se agora!", controller: 'users', action: 'new' %></p>
