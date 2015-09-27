@@ -1,15 +1,18 @@
 class MainController < ApplicationController
-  def home
+  def intro
+  end
+
+  def login_page
   end
 
   def login
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       log_in user
-      redirect_to feed_path
+      redirect_to controller: 'home', action: 'index'
     else
       flash.now.alert = "Email ou senha incorreta"
-      render 'home'
+      render 'login_page'
     end
   end
 

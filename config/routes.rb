@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
 
-  root 'main#home'
+  root 'main#intro'
+
+  get 'home/index'
+
+  get 'login' => 'main#login_page'
   post 'login' => 'main#login'
   delete 'logout' => 'main#logout'
-  get 'feed' => 'feed#index'
+
   resources :users
+  resources :questions
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

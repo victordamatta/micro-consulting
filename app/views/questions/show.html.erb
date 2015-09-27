@@ -1,0 +1,27 @@
+<%= render 'alert' %>
+<p>
+  <strong>Pergunta:</strong>
+  <%= @question.title %>
+</p>
+
+<p>
+  <strong>Detalhes:</strong>
+  <%= @question.body %>
+</p>
+
+<p>
+  <strong>Perguntador:</strong>
+  <%= @question.user_id %>
+</p>
+
+<p><strong>Respostas</strong></p>
+<% if @answers %>
+  <% @answers.each do |answer| %>
+    <p><%= answer.body %> |
+    <%= answer.rating %> |
+    <%= answer.user_id %></p>
+  <% end %>
+<% end %>
+
+<%= link_to 'Editar', edit_question_path(@question) %> |
+<%= link_to 'Voltar', controller: 'home' %>
