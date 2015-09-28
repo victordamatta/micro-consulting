@@ -14,14 +14,40 @@
   <%= @question.user_id %>
 </p>
 
-<p><strong>Respostas</strong></p>
-<% if @answers %>
-  <% @answers.each do |answer| %>
-    <p><%= answer.body %> |
-    <%= answer.rating %> |
-    <%= answer.user_id %></p>
+<% if @question.user_id == current_user.id %>
+  <p><strong>Respostas</strong></p>
+  <% @question.answers.each do |answer| %>
+    <%= answer.body %> |
+    <%= answer.user_id %>
+    <% if answer.rating %>
+    | <%= answer.rating %>
+    <% end %>
+    <%= form_tag("/questions/#{@question.id}/answers/#{answer.id}", method: "patch") do %>
+      <%= number_field_tag(:rating, in: 1..100) %>
+      <%= submit_tag("Avaliar") %>
+    <% end %>
+    <br>
+  <% end %>
+<% else %>
+  <% your_answer = @question.answers.find_by(user_id: current_user.id) %>
+  <% if !your_answer %>
+    <p>Sua reposta:</p>
+    <%= form_for([@question, @question.answers.build]) do |f| %>
+      <p>
+        <%= f.label :body %><br>
+        <%= f.text_area :body %>
+      </p>
+      <p>
+        <%= f.submit %>
+      </p>
+    <% end %>
+  <% else %>
+    <p><%= your_answer.body %> |
+    <%= your_answer.rating %> |
+    <%= your_answer.user_id %></p>
   <% end %>
 <% end %>
 
+
 <%= link_to 'Editar', edit_question_path(@question) %> |
-<%= link_to 'Voltar', controller: 'home' %>
+<%= link_to 'Voltar', :back %>

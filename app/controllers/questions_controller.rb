@@ -3,11 +3,10 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.where ['user_id != ?', current_user.id]
-    @my_questions = Question.where ['user_id == ?', current_user.id]
+    @my_questions = current_user.questions
   end
 
   def show
-    @answers = Answer.where ['question_id == ?', @question.id]
   end
 
   def new
@@ -18,7 +17,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(user_params)
+    @question = Question.new(question_params)
     @question.user_id = current_user.id
 
     if @question.save
@@ -29,7 +28,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    if auth && @question.update(user_params)
+    if auth && @question.update(question_params)
       redirect_to @question, notice: 'User was successfully updated.'
     else
       render :edit
@@ -50,7 +49,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
   end
 
-  def user_params
+  def question_params
     params.require(:question).permit(:title, :body)
   end
 

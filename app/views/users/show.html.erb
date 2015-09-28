@@ -7,6 +7,16 @@
 </p>
 
 <p>
+  <strong>Sobre:</strong>
+  <%= @user.about_me %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
   <strong>Pontuação Média:</strong>
   <%= @user.score %>
 </p>
@@ -16,10 +26,5 @@
   <%= @user.number_of_answers %>
 </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
 <%= link_to 'Editar', edit_user_path(@user) %> |
-<%= link_to 'Voltar', controller: 'home' %>
+<%= link_to 'Voltar', :back %>
