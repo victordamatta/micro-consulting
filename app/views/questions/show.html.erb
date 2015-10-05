@@ -24,6 +24,10 @@
     <% end %>
     <%= form_tag("/questions/#{@question.id}/answers/#{answer.id}", method: "patch") do %>
       <%= number_field_tag(:rating, in: 1..100) %>
+      <br>
+      <%= label_tag(:best, "Melhor resposta?") %>
+      <%= check_box_tag(:best) %>
+      <br>
       <%= submit_tag("Avaliar") %>
     <% end %>
     <br>
@@ -48,6 +52,7 @@
   <% end %>
 <% end %>
 
-
-<%= link_to 'Editar', edit_question_path(@question) %> |
-<%= link_to 'Voltar', :back %>
+<% if @question.user == current_user %>
+  <%= link_to 'Editar', edit_question_path(@question) %> |
+<% end %>
+<%= link_to 'Voltar', questions_path %>

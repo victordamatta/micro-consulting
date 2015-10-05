@@ -9,7 +9,7 @@ class MainController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       log_in user
-      redirect_to controller: 'home', action: 'index'
+      redirect_to questions_path
     else
       flash.now.alert = "Email ou senha incorreta"
       render 'login_page'

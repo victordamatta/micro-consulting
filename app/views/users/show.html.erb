@@ -26,5 +26,7 @@
   <%= @user.number_of_answers %>
 </p>
 
-<%= link_to 'Editar', edit_user_path(@user) %> |
+<% if @user == current_user %>
+  <%= link_to 'Editar', edit_user_path(@user) %> |
+<% end %>
 <%= link_to 'Voltar', :back %>

@@ -2,8 +2,12 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy, :answer_this]
 
   def index
-    @questions = Question.where ['user_id != ?', current_user.id]
-    @my_questions = current_user.questions
+    if logged_in?
+      @questions = Question.where ['user_id != ?', current_user.id]
+      @my_questions = current_user.questions
+    else
+      @questions = Question.all
+    end
   end
 
   def show

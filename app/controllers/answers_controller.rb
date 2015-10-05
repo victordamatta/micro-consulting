@@ -13,6 +13,7 @@ class AnswersController < ApplicationController
   def update
     @answer = Answer.find(params[:id])
     @answer.rating = params[:rating]
+    @answer.best = !!params[:best]
     @answer.save
     user = @answer.user
     user.score = Answer.where(user_id: user.id).average(:rating)

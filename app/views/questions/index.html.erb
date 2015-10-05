@@ -1,46 +1,26 @@
-<h1>Lista de Perguntas</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Pergunta</th>
-      <th>Detalhes</th>
-      <th>Perguntador</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if @questions %>
-      <% @questions.each do |question| %>
-        <tr>
-          <td><%= question.title %></td>
-          <td><%= question.body %></td>
-          <td><%= question.user_id %></td>
-          <td><%= link_to 'Show', question %></td>
-        </tr>
-      <% end %>
+<h2>Perguntas para você</h2>
+<% if @questions %>
+  <div class="question row">
+    <% @questions.each do |question| %>
+      <h3><%= question.title %></h3>
+      <p><%= question.body %></p>
+      <p><%= question.user.name %></p>
+      <p><%= link_to 'Show', question %></p>
+      <hr>
     <% end %>
-
-    <tr>
-      <th>Minhas Perguntas</th>
-    </tr>
-    <% if @my_questions %>
-      <% @my_questions.each do |question| %>
-        <tr>
-          <td><%= question.title %></td>
-          <td><%= question.body %></td>
-          <td><%= question.user_id %></td>
-          <td><%= link_to 'Show', question %></td>
-          <td><%= link_to 'Edit', edit_question_path(question) %></td>
-          <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
+  </div>
+<% end %>
+<% if @my_questions %>
+<h2>Suas Perguntas</h2>
+  <div class="my_question question row">
+    <% @my_questions.each do |question| %>
+      <h3><%= question.title %></h3>
+      <p><%= question.body %></p>
+      <%= link_to 'Show', question %>
+      <%= link_to 'Edit', edit_question_path(question) %>
+      <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <hr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
+  </div>
 <%= link_to 'Nova Pergunta', new_question_path %>
-<%= link_to 'Voltar', controller: 'home' %>
+<% end %>

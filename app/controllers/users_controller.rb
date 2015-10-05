@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
     if @user.save
       log_in @user
-      redirect_to controller: 'home', action: 'index'
+      redirect_to questions_path
     else
       render :new
     end
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:name, :email, :about_me, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :email_confirmation, :about_me, :password, :password_confirmation)
   end
 
   def auth
