@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, html: {class: "col-md-6"}) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -11,31 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nome%><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :nome, class: "control-label" %><br>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email %>
+  <div class="form-group">
+    <%= f.label :sobre_mim, class: "control-label" %><br>
+    <%= f.text_area :about_me, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :confirme_seu_email %><br>
-    <%= f.email_field :email_confirmation %>
+  <div class="form-group">
+    <%= f.label :email, class: "control-label" %><br>
+    <%= f.email_field :email, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :sobre_mim%><br>
-    <%= f.text_field :about_me %>
+  <div class="form-group">
+    <%= f.label :confirme_seu_email, class: "control-label" %><br>
+    <%= f.email_field :email_confirmation, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :senha %><br>
-    <%= f.password_field :password %>
+  <div class="form-group">
+    <%= f.label :senha, class: "control-label" %><br>
+    <%= f.password_field :password, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :confirme_sua_senha %><br>
-    <%= f.password_field :password_confirmation %>
+  <div class="form-group">
+    <%= f.label :confirme_sua_senha, class: "control-label" %><br>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.submit "Submeter", :class => "btn btn-default" %>
 <% end %>

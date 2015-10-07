@@ -1,32 +1,30 @@
 <p id="notice"><%= notice %></p>
-
 <%= render 'alert' %>
-<p>
-  <strong>Nome:</strong>
-  <%= @user.name %>
-</p>
 
-<p>
-  <strong>Sobre:</strong>
-  <%= @user.about_me %>
-</p>
+<div class="row">
+  <div class="col-xs-12 col-sm-8">
+    <h2><%= @user.name %></h2>
+    <p><strong>Sobre: </strong> <%= @user.about_me %></p>
+    <p><strong>Email: </strong><%= @user.email %></p>
+  </div>
+  <div class="col-xs-12 col-sm-4 text-center">
+    <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="" class="center-block img-circle img-responsive">
+  </div><!--/col-->
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Pontuação Média:</strong>
-  <%= @user.score %>
-</p>
-
-<p>
-  <strong>Número de Respostas:</strong>
-  <%= @user.number_of_answers %>
-</p>
+  <div class="col-xs-12 col-sm-4">
+    <h2><strong> <%= @user.number_of_answers %> </strong></h2>
+    <p><small>Respostas</small></p>
+  </div><!--/col-->
+  <div class="col-xs-12 col-sm-4">
+    <% if @user.score == nil %>
+      <h2><strong>Nenhuma Avaliação</strong></h2>
+    <% else %>
+      <h2><strong><%= @user.score %></strong></h2>
+    <% end %>
+    <p><small>Pontuação Média</small></p>
+  </div><!--/col-->
+</div><!--/row-->
 
 <% if @user == current_user %>
-  <%= link_to 'Editar', edit_user_path(@user) %> |
+<%= link_to 'Editar', edit_user_path(@user), class: "btn btn-default" %>
 <% end %>
-<%= link_to 'Voltar', :back %>

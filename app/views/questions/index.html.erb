@@ -1,26 +1,27 @@
 <h2>Perguntas para você</h2>
 <% if @questions %>
-  <div class="question row">
     <% @questions.each do |question| %>
-      <h3><%= question.title %></h3>
-      <p><%= question.body %></p>
-      <p><%= question.user.name %></p>
-      <p><%= link_to 'Show', question %></p>
-      <hr>
+    <div class="row">
+      <h3 class="col-md-6"><%= question.title %></h3>
+      <h4 class="col-xs-4"><%= question.body %></h4>
+      <h4 class="col-xs-4"><%= question.user.name %></h4>
+      <%= link_to 'Show', question, class: "btn btn-default" %>
+    </div>
+    <hr>
     <% end %>
-  </div>
 <% end %>
 <% if @my_questions %>
 <h2>Suas Perguntas</h2>
-  <div class="my_question question row">
-    <% @my_questions.each do |question| %>
-      <h3><%= question.title %></h3>
-      <p><%= question.body %></p>
-      <%= link_to 'Show', question %>
-      <%= link_to 'Edit', edit_question_path(question) %>
-      <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <hr>
-    <% end %>
-  </div>
-<%= link_to 'Nova Pergunta', new_question_path %>
+<% @my_questions.each do |question| %>
+<div class="row">
+  <h3 class="col-md-6"><%= question.title %></h3>
+  <h4 class="col-xs-4"><%= question.body %></h4>
+  <h4 class="col-xs-4"><%= question.user.name %></h4>
+  <%= link_to 'Show', question, class: "btn btn-default" %>
+  <%= link_to 'Edit', edit_question_path(question), class: "btn btn-default" %>
+  <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+</div>
+<hr>
+<% end %>
+<%= link_to 'Nova Pergunta', new_question_path, class: "btn btn-default" %>
 <% end %>
