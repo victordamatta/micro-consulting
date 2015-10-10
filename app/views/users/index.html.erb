@@ -5,6 +5,7 @@
 <% @users.each do |user| %>
   <div class="row">
     <h3 class="col-xs-8"><%= user.name %></h3>
+    <img src="<%=user.avatar.url%>" alt="" class="img-responsive">
     <%= link_to 'Show', user, class: "btn btn-default col-xs-4" %>
   </div>
   <hr>

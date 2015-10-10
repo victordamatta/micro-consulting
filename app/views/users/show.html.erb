@@ -8,7 +8,7 @@
     <p><strong>Email: </strong><%= @user.email %></p>
   </div>
   <div class="col-xs-12 col-sm-4 text-center">
-    <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="" class="center-block img-circle img-responsive">
+    <img src="<%=@user.avatar.url%>" alt="" class="center-block img-circle img-responsive">
   </div><!--/col-->
 
   <div class="col-xs-12 col-sm-4">

@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   validates :email_confirmation, presence: true
   validates :name, presence: true
   validates :password, length: { minimum: 6 }
+  mount_uploader :avatar, AvatarUploader
 end
