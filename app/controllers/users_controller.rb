@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.where ['id != ?', current_user.id]
+    if (params[:q] && params[:q] != "")
+      @users = User.where ['name = ?', params[:q]]
+    else
+      @users = User.where ['id != ?', current_user.id]
+    end
   end
 
   # GET /users/1
