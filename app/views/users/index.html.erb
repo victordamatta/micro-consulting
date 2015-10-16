@@ -4,9 +4,11 @@
 
 <% @users.each do |user| %>
   <div class="row">
-    <h3 class="col-xs-8"><%= user.name %></h3>
-    <img src="<%=user.avatar.url%>" alt="" class="img-responsive">
-    <%= link_to 'Show', user, class: "btn btn-default col-xs-4" %>
+    <img src="<%=user.avatar.url(:thumb)%>" alt="" class="img-responsive col-xs-2">
+    <h3 class="col-xs-2"><%= user.name %></h3>
+    <span class="col-xs-4"></span>
+    <br>
+    <%= link_to 'Show', user, class: "btn btn-default col-xs-4 pull-right" %>
   </div>
   <hr>
 <% end %>
