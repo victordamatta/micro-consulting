@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
     if logged_in?
       @questions = Question.where ['user_id != ?', current_user.id]
       @my_questions = current_user.questions
+      @answers = current_user.answers
     else
       @questions = Question.all
     end

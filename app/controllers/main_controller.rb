@@ -1,6 +1,10 @@
 class MainController < ApplicationController
-  
+
   def intro
+  end
+
+  def about
+    render plain: "nothing here"
   end
 
   def login_page

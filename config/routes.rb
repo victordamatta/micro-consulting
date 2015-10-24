@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'main#intro'
+  get 'about' => 'main#about'
 
   get 'login' => 'main#login_page'
   post 'login' => 'main#login'
