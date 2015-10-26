@@ -12,6 +12,14 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @myanswer = current_user.answers.find_by(question_id: @question.id)
+    @answer = Answer.new
+    if !@answer.body.nil? && @myanswer
+      current_user.answers.destroy(@myanswer)
+      @question.answers << @answer
+    elsif !@answer.body.nil?
+      @question.answers << @answer
+    end
   end
 
   def new

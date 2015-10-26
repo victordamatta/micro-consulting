@@ -41,20 +41,19 @@
   </div>
   <% end %>
   <% else %>
-  <% your_answer = @question.answers.find_by(user_id: current_user.id) %>
+  <% if @myanswer %>
+    <% rating = @myanswer.rating %>
+    <% body = @myanswer.body %>
+  <% end %>
   <h2>Sua reposta:</h2>
   <hr>
-  <% if !your_answer %>
-    <%= form_for([@question, @question.answers.build]) do |f| %>
-      <p>
-        <%= f.text_area :body, class: "form-control" %>
-      </p>
-      <p>
-        <%= f.submit "Submeter", class: "btn btn-default" %>
-      </p>
-    <% end %>
-  <% else %>
-    <p><%= your_answer.body %></p>
-    <p><%= your_answer.rating %></p>
+  <p><%= rating %></p>
+  <%= form_for([@question, @answer]) do |f| %>
+    <p>
+      <%= f.text_area :body, :value => body, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.submit "Submeter", class: "btn btn-default" %>
+    </p>
   <% end %>
 <% end %>
