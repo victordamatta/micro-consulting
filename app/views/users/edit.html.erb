@@ -1,6 +1,6 @@
 <h1 class="title">Editando Usuário</h1>
 
-<%= render 'alert' %>
+<%= flash[:alert] %>
 <%= form_for(@user, html: {class: "col-md-6"}) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">

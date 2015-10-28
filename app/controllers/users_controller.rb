@@ -6,8 +6,10 @@ class UsersController < ApplicationController
   def index
     if (params[:q] && params[:q] != "")
       @users = User.where ['name = ?', params[:q]]
-    else
+    elsif current_user
       @users = User.where ['id != ?', current_user.id]
+    else
+      @users = User.all
     end
   end
 
