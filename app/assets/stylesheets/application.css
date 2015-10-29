@@ -15,8 +15,49 @@
  */
  body {
    padding-top: 70px;
+   padding-bottom: 70px;
+   background-color: white;
  }
 
-.fonted {
-    font-family: 'Raleway', sans-serif;
+.fonted-main {
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  font-weight: bold;
+}
+
+.fonted-alt {
+  font-family: 'Droid Serif', sans-serif;
+  color: black;
+}
+
+.navbar{
+  background-color: white;
+}
+
+.error-header {
+  margin-top: 0px;
+}
+
+#foot1 {
+  color: black;
+}
+
+#foot2 {
+  color: black;
+}
+
+#foot3 {
+  color: black;
+}
+
+#notice {
+  color: green;
+}
+
+#flash-success {
+  color: green;
+}
+
+#flash-alert {
+  color: red;
 }

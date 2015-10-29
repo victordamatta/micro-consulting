@@ -4,10 +4,6 @@ class MainController < ApplicationController
   end
 
   def about
-    render plain: "nothing here"
-  end
-
-  def login_page
   end
 
   def login
@@ -17,7 +13,7 @@ class MainController < ApplicationController
       redirect_to questions_path
     else
       flash.now.alert = "Email ou senha incorreta"
-      render 'login_page'
+      render 'intro'
     end
   end
 

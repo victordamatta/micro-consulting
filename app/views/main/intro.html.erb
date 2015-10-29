@@ -1,6 +1,13 @@
-<div class="jumbotron text-center">
-  <h1 class="text-center">LOGO</h1>
+<style media="screen">
+  .fonted-main{
+    color: black;
+  }
+</style>
+
+<div class="jumbotron text-center fonted-main">
+  <h1>LOGO</h1>
   <h3>Procura respostas pra suas perguntas?</h3>
   <h4>Encontre aqui pessoas com soluções criativas!</h4>
-  <%= link_to 'Mais', about_path, class: "btn btn-primary btn-lg" %>
+  <br>
+  <%= render 'form' %>
 </div>

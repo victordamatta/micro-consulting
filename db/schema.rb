@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026212155) do
+ActiveRecord::Schema.define(version: 20151029151511) do
 
 # Could not dump table "answers" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20151026212155) do
     t.integer  "number_of_answers"
     t.text     "about_me"
     t.string   "avatar"
+    t.integer  "best_answers"
   end
 
 end

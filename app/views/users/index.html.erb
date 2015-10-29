@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
-<h1>Usuários</h1>
+<h1 class="fonted-main">Usuários</h1>
 <%= render 'search' %>
 
 <% @users.each do |user| %>
-  <div class="row">
+  <div class="row fonted-alt">
     <img src="<%=user.avatar.url(:thumb)%>" alt="" class="img-responsive col-xs-2">
     <h3 class="col-xs-2"><%= user.name %></h3>
     <span class="col-xs-4"></span>

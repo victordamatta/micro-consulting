@@ -1,12 +1,15 @@
 class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
+    @myanswer = @question.answers.find_by(user_id: current_user.id)
     @answer = @question.answers.new(answer_params)
     @answer.user_id = current_user.id
-    @answer.save
-    @answer.user.number_of_answers = Answer.where(user_id: @answer.user.id).count
-    @answer.user.save
-
+    if @answer.save
+      if @myanswer
+        current_user.answers.destroy(@myanswer)
+      end
+      flash.notice = "Resposta submetida"
+    end
     redirect_to question_path(@question)
   end
 
@@ -15,9 +18,6 @@ class AnswersController < ApplicationController
     @answer.rating = params[:rating]
     @answer.best = !!params[:best]
     @answer.save
-    user = @answer.user
-    user.score = Answer.where(user_id: user.id).average(:rating)
-    user.save
     redirect_to question_path(@answer.question)
   end
 

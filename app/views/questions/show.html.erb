@@ -1,12 +1,12 @@
 <%= render 'alert' %>
 
-<h1 class="text-center"><%= @question.title %>?</h1>
-<h4>
+<h1 class="text-center fonted-main"><%= @question.title %>?</h1>
+<h4 class="fonted-alt">
   <strong>Detalhes:</strong>
   <%= @question.body %>
 </h4>
 
-<h4>
+<h4 class="fonted-alt">
   <strong>Perguntador:</strong>
   <%= @question.user.name %>
 </h4>
@@ -29,7 +29,11 @@
   <div class="row col-md-6">
     <%= form_tag("/questions/#{@question.id}/answers/#{answer.id}", method: "patch") do %>
     <div class="form-group">
-      <p><%= number_field_tag(:rating, in: 1..100, class: "form-control") %></p>
+      <label class="sr-only" for="exampleInputAmount">Nota</label>
+      <div class="input-group">
+        <input type="tel" class="form-control" id="rating" name="rating" placeholder="Nota">
+        <div class="input-group-addon">%</div>
+      </div>
     </div>
     <div class="checkbox">
       <label>
@@ -45,9 +49,13 @@
     <% rating = @myanswer.rating %>
     <% body = @myanswer.body %>
   <% end %>
-  <h2>Sua reposta:</h2>
   <hr>
-  <p><%= rating %></p>
+  <h2 class="fonted-main">Sua reposta:</h2>
+  <% if flash[:notice] %>
+    <p id="flash-success"><%= flash[:notice] %></p>
+  <% end %>
+  <p class="fonted-alt"><%= rating %></p>
+  <p class="fonted-alt"><%= body %></p>
   <%= form_for([@question, @answer]) do |f| %>
     <p>
       <%= f.text_area :body, :value => body, class: "form-control" %>

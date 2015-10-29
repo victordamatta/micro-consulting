@@ -3,7 +3,7 @@
   <li role="presentation"><a href="#minhas" id="tab2">Minhas Perguntas</a></li>
   <li role="presentation"><a href="#respostas" id="tab3">Minhas Respostas</a></li>
 </ul>
-<div class="tab-content">
+<div class="tab-content fonted-alt">
   <div role="tabpanel" class="tab-pane fade in active" id="todas">
     <h2>Perguntas para você</h2>
     <% @questions.each do |question| %>
@@ -21,15 +21,21 @@
   </div>
 
   <div role="tabpanel" class="tab-pane fade" id="minhas">
-    <h2>Suas Perguntas</h2>
+    <h2 class="">Suas Perguntas</h2>
     <% @my_questions.each do |question| %>
       <div class="row">
         <h3 class="col-md-6"><%= question.title %></h3>
-        <h4 class="col-xs-4"><%= question.body %></h4>
-        <h4 class="col-xs-4"><%= question.user.name %></h4>
-        <%= link_to 'Show', question, class: "btn btn-default" %>
-        <%= link_to 'Edit', edit_question_path(question), class: "btn btn-default" %>
-        <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+      </div>
+      <div class="row">
+        <h4 class="col-md-8"><%= question.body %></h4>
+      </div>
+      <div class="row">
+        <h4 class="col-md-8"><%= question.user.name %></h4>
+        <div class="col-md-8">
+          <%= link_to 'Show', question, class: "btn btn-default" %>
+          <%= link_to 'Edit', edit_question_path(question), class: "btn btn-default" %>
+          <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+        </div>
       </div>
       <hr>
     <% end %>

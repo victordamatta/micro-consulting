@@ -17,6 +17,9 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user.number_of_answers = @user.answers.count
+    @user.score = @user.answers.average(:rating)
+    @user.best_answers = @user.answers.where(['best = ?', t]).count
+    @user.save
   end
 
   # GET /users/new
