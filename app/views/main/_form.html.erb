@@ -1,7 +1,7 @@
 <% if flash[:alert] %>
   <div class="alert alert-danger"><%= flash[:alert] %></div>
 <% end %>
-<%= form_tag({:action => 'login'}, {:class => 'form-signin text-left col-md-6'}) do %>
+<%= form_tag({:action => 'login'}, {:class => 'form-signin text-left'}) do %>
   <div class="form-group">
     <label for="email">Endereço de email</label>
     <%= text_field_tag "email", nil, class: "form-control" %>
