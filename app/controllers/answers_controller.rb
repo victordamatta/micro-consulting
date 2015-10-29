@@ -15,8 +15,16 @@ class AnswersController < ApplicationController
 
   def update
     @answer = Answer.find(params[:id])
-    @answer.rating = params[:rating]
-    @answer.best = !!params[:best]
+    if params[:rating].size > 0
+      @answer.rating = params[:rating]
+    end
+    if params[:best]
+      @answer.best = params[:best]
+      @answer.question.answers.where(['best = ?', true]).each do |answer|
+        answer.best = false
+        answer.save
+      end
+    end
     @answer.save
     redirect_to question_path(@answer.question)
   end

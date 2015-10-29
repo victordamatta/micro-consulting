@@ -18,9 +18,9 @@
   <h3><strong>Respostas</strong></h3>
   <% @question.answers.each do |answer| %>
   <h3>
-    <%= answer.user.name %>
+    <p><i>Usuário: </i><%= answer.user.name %></p>
     <% if answer.rating %>
-      <%= answer.rating %>
+      <p><i>Nota:</i> <%= answer.rating %></p>
     <% end %>
   </h3>
   <p>
@@ -37,7 +37,7 @@
     </div>
     <div class="checkbox">
       <label>
-        <%= check_box_tag(:best) %> Melhor resposta?
+        <%= check_box_tag(:best, true, answer.best) %> Melhor resposta?
       </label>
     </div>
     <%= submit_tag("Avaliar", class: "btn btn-default col-xs-4") %>
