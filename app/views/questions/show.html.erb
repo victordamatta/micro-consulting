@@ -1,19 +1,28 @@
 <%= render 'alert' %>
 
-<h1 class="text-center fonted-main"><%= @question.title %>?</h1>
+<h1 class="text-center fonted-main"><%= @question.title %></h1>
 <div class="row">
-  <h4 class="fonted-alt">
+  <% if @question.body.length > 0 %>
+  <h4 class="fonted-alt col-md-12">
     <strong>Detalhes:</strong>
     <%= @question.body %>
   </h4>
+  <% end %>
+</div>
 
-  <h4 class="fonted-alt">
+<div class="row">
+  <h4 class="fonted-alt col-md-12">
     <strong>Perguntador:</strong>
     <%= @question.user.name %>
   </h4>
-  <% if @question.user == current_user %>
-    <%= link_to 'Editar', edit_question_path(@question), class: "btn btn-default" %>
-  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-2">
+    <% if @question.user == current_user %>
+      <%= link_to 'Editar', edit_question_path(@question), class: "btn btn-default" %>
+    <% end %>
+  </div>
 </div>
 <% if @question.user_id == current_user.id %>
   <h3 class="row"><strong>Respostas</strong></h3>
@@ -25,7 +34,7 @@
       <p><i>Nota:</i> <%= answer.rating %></p>
     <% end %>
   </h3>
-  <p>
+  <p class="big-text">
     <%= answer.body %>
   </p>
     <%= form_tag("/questions/#{@question.id}/answers/#{answer.id}", method: "patch") do %>
@@ -49,20 +58,24 @@
   <% if @myanswer %>
     <% rating = @myanswer.rating %>
     <% body = @myanswer.body %>
+    <% time = @myanswer.updated_at %>
   <% end %>
   <hr>
   <h2 class="fonted-main">Sua reposta:</h2>
-  <% if flash[:notice] %>
-    <p id="flash-success"><%= flash[:notice] %></p>
+  <p class="fonted-alt big-text"><%= body %></p>
+  <% if rating %>
+    <p class="fonted-alt big-text"><i>Nota:</i> <%= rating %></p>
   <% end %>
-  <p class="fonted-alt"><%= rating %></p>
-  <p class="fonted-alt"><%= body %></p>
+  <p class="fonted-alt"><%= time %></p>
   <%= form_for([@question, @answer]) do |f| %>
     <p>
-      <%= f.text_area :body, :value => body, class: "form-control" %>
+      <%= f.text_area :body, class: "form-control" %>
     </p>
     <p>
       <%= f.submit "Submeter", class: "btn btn-default" %>
     </p>
+  <% end %>
+  <% if flash[:notice] %>
+    <p id="flash-success"><%= flash[:notice] %></p>
   <% end %>
 <% end %>

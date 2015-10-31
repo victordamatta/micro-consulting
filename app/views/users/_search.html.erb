@@ -1,6 +1,6 @@
 <%= form_tag("/users", method: "get", :class => 'form-inline fonted-alt') do %>
   <div class="form-group">
-    <%= label_tag(:q, "Procurar por:") %>
+    <%= label_tag(:q, "Procurar por:", class: 'fonted-main') %>
     <%= text_field_tag(:q, nil, class: "form-control") %>
   </div>
   <%= submit_tag("Procurar", class: "btn btn-default") %>

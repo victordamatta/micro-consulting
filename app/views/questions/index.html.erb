@@ -1,17 +1,23 @@
+<style media="screen">
+  h2 {
+    font-family: georgia;
+  }
+</style>
 <ul class="nav nav-tabs">
   <li role="presentation" class="active"><a href="#todas" id="tab1">Perguntas</a></li>
   <li role="presentation"><a href="#minhas" id="tab2">Minhas Perguntas</a></li>
   <li role="presentation"><a href="#respostas" id="tab3">Minhas Respostas</a></li>
+  <%= link_to 'Nova Pergunta', new_question_path, class: "btn btn-primary" %>
 </ul>
 <div class="tab-content fonted-alt">
   <div role="tabpanel" class="tab-pane fade in active" id="todas">
     <h2>Perguntas para você</h2>
+    <hr>
     <% @questions.each do |question| %>
+      <h3><b><%= question.title %></b></h3>
       <div class="row">
-        <h3 class="col-md-6"><%= question.title %></h3>
-        <h4 class="col-xs-4"><%= question.body %></h4>
-        <h4 class="col-xs-4"><%= question.user.name %></h4>
-        <%= link_to 'Show', question, class: "btn btn-default" %>
+        <%= link_to 'Escreva uma resposta!', question, class: "btn btn-primary" %>
+        <h4 class="col-xs-4">Perguntador: <%= question.user.name %></h4>
       </div>
       <hr>
     <% end %>
@@ -21,16 +27,12 @@
   </div>
 
   <div role="tabpanel" class="tab-pane fade" id="minhas">
-    <h2 class="">Suas Perguntas</h2>
+    <h2>Suas Perguntas</h2>
+    <hr>
     <% @my_questions.each do |question| %>
+      <h3><b><%= question.title %></b></h3>
+      <br>
       <div class="row">
-        <h3 class="col-md-6"><%= question.title %></h3>
-      </div>
-      <div class="row">
-        <h4 class="col-md-8"><%= question.body %></h4>
-      </div>
-      <div class="row">
-        <h4 class="col-md-8"><%= question.user.name %></h4>
         <div class="col-md-8">
           <%= link_to 'Show', question, class: "btn btn-default" %>
           <%= link_to 'Edit', edit_question_path(question), class: "btn btn-default" %>
@@ -42,8 +44,6 @@
     <% if @my_questions.empty? %>
       <h3>Você não fez nenhuma pergunta</h3>
     <% end %>
-
-    <%= link_to 'Nova Pergunta', new_question_path, class: "btn btn-default" %>
   </div>
 
   <div role="tabpanel" class="tab-pane fade" id="respostas">
@@ -59,6 +59,7 @@
       <h3>Você não respondeu nenhum pergunta</h3>
     <% end %>
   </div>
+
 </div>
 
 <script>
