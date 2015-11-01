@@ -14,6 +14,10 @@ class QuestionsController < ApplicationController
   def show
     @myanswer = current_user.answers.find_by(question_id: @question.id)
     @answer = Answer.new
+    if current_user.id == @question.user_id
+      @question.new_answers = false
+      @question.save
+    end
   end
 
   def new

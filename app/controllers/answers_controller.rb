@@ -2,14 +2,19 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @myanswer = @question.answers.find_by(user_id: current_user.id)
-    @answer = @question.answers.new(answer_params)
-    @answer.user_id = current_user.id
-    if @answer.save
-      if @myanswer
-        current_user.answers.destroy(@myanswer)
-      end
-      flash.notice = "Resposta submetida"
+    if @myanswer
+      @myanswer.body = params[:answer][:body]
+      @myanswer.save
+      @myanswer.question.new_answers = true
+      @myanswer.question.save
+    else
+      @answer = @question.answers.new(answer_params)
+      @answer.user_id = current_user.id
+      @answer.save
+      @answer.question.new_answers = true
+      @answer.question.save
     end
+    flash.notice = "Resposta submetida"
     redirect_to question_path(@question)
   end
 

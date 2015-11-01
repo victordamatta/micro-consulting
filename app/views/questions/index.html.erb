@@ -3,9 +3,14 @@
     font-family: georgia;
   }
 </style>
+<% noti = current_user.questions.find_by(new_answers: true).nil? %>
 <ul class="nav nav-tabs">
   <li role="presentation" class="active"><a href="#todas" id="tab1">Perguntas</a></li>
+  <% if !noti %>
+  <li role="presentation"><a href="#minhas" id="tab2"><b>Minhas Perguntas</b></a></li>
+  <% else %>
   <li role="presentation"><a href="#minhas" id="tab2">Minhas Perguntas</a></li>
+  <% end %>
   <li role="presentation"><a href="#respostas" id="tab3">Minhas Respostas</a></li>
   <%= link_to 'Nova Pergunta', new_question_path, class: "btn btn-primary" %>
 </ul>
@@ -30,7 +35,11 @@
     <h2>Suas Perguntas</h2>
     <hr>
     <% @my_questions.each do |question| %>
-      <h3><b><%= question.title %></b></h3>
+      <% if question.new_answers %>
+        <h3><b><%= question.title %></b> <i>Novas Respostas!</i></h3>
+      <% else %>
+        <h3><b><%= question.title %></b></h3>
+      <% end %>
       <br>
       <div class="row">
         <div class="col-md-8">
